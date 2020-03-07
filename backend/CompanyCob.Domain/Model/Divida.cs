@@ -2,10 +2,14 @@ using System;
 
 namespace CompanyCob.Domain.Model
 {
-    public class Parcela
+    public class Divida
     {
         public int Id { get; set; }
-        public Contrato Contrato { get; set; }
+        public Devedor Devedor { get; set; }
+        public int IdDevedor { get; set; }
+        public Carteira Carteira { get; set; }
+        public int IdCarteira { get; set; }
+        public string NumeroDivida { get; set; }
         public decimal ValorOriginal { get; set; }
         public DateTime Vencimento { get; set; }
 

@@ -12,6 +12,6 @@ namespace CompanyCob.Domain.Model
         public TipoJurosEnum TipoJuros { get; set; }
         public decimal PercentualJuros { get; set; }
         public decimal Comissao { get; set; }
-        public IEnumerable<Contrato> Contratos { get; set; }
+        public IEnumerable<Divida> Dividas { get; set; }
     }
 }

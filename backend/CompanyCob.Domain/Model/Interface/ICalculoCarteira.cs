@@ -5,6 +5,6 @@ namespace CompanyCob.Domain.Model.Interface
 {
     public interface ICalculoDivida
     {
-        double CalcularJuros(TipoJurosEnum tipoJuros, List<Parcela> parcelas);
+        double CalcularJuros(Divida divida);
     }
 }

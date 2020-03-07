@@ -1,8 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
+  <ItemGroup>
+    <ProjectReference Include="..\CompanyCob.Domain\CompanyCob.Domain.csproj" />
+    <ProjectReference Include="..\CompanyCob.Repository\CompanyCob.Repository.csproj" />
+    <ProjectReference Include="..\CompanyCob.DependencyInjection\CompanyCob.DependencyInjection.csproj" />
+  </ItemGroup>
+
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="Flunt" Version="1.0.4" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
+  </ItemGroup>
 
 
 </Project>

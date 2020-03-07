@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Net;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace CompanyCob.Api
 {
@@ -20,6 +15,9 @@ namespace CompanyCob.Api
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    webBuilder.ConfigureKestrel(cfgKestrel => {
+                        cfgKestrel.Listen(IPAddress.Any, 5000);
+                    });
                     webBuilder.UseStartup<Startup>();
                 });
     }

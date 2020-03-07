@@ -8,20 +8,18 @@ namespace CompanyCob.Repository.Data
     {
         public DbSet<Carteira> Carteiras { get; set; }
         public DbSet<Devedor> Devedores { get; set; }
-        public DbSet<Contrato> Contratos { get; set; }
-        public DbSet<Parcela> Parcelas { get; set; }
+        public DbSet<Divida> Dividas { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=localhost,1433;Database=companycob;User ID=sa;Password=1q2w3e%&!");
+            optionsBuilder.UseSqlServer(@"Server=192.168.0.136,1433;Database=companycob;User ID=sa;Password=admin!@#123");
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new CarteiraMap());
-            builder.ApplyConfiguration(new ContratoMap());
+            builder.ApplyConfiguration(new DividaMap());
             builder.ApplyConfiguration(new DevedorMap());
-            builder.ApplyConfiguration(new ParcelaMap());
         }
     }
 }

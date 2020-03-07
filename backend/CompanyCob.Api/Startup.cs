@@ -1,15 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using CompanyCob.DependencyInjection;
+using CompanyCob.Api.Configuration;
+using Microsoft.EntityFrameworkCore;
+using CompanyCob.Repository.Data;
 
 namespace CompanyCob.Api
 {
@@ -26,17 +23,20 @@ namespace CompanyCob.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddRepositories();
+            services.AddAutoMapper();
+            services.AddResponseCompression();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, CobDbContext context)
         {
+            context.Database.Migrate();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseHttpsRedirection();
 
             app.UseRouting();
 
@@ -46,6 +46,8 @@ namespace CompanyCob.Api
             {
                 endpoints.MapControllers();
             });
+
+            app.UseResponseCompression();
         }
     }
 }

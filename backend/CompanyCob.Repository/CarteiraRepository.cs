@@ -1,9 +1,10 @@
 using CompanyCob.Domain.Model;
 using CompanyCob.Repository.Data;
+using CompanyCob.Domain.Model.Interface;
 
 namespace CompanyCob.Repository
 {
-    public class CarteiraRepository : AbstractRepository<Carteira, int>
+    public class CarteiraRepository : AbstractRepository<Carteira, int>, ICarteiraRepository
     {
         private readonly CobDbContext _context;
 
