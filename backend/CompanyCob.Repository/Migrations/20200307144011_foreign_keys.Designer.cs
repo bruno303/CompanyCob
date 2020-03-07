@@ -4,14 +4,16 @@ using CompanyCob.Repository.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CompanyCob.Repository.Migrations
 {
     [DbContext(typeof(CobDbContext))]
-    partial class CobDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200307144011_foreign_keys")]
+    partial class foreign_keys
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

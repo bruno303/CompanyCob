@@ -25,6 +25,7 @@ namespace CompanyCob.Api
             services.AddControllers();
             services.AddRepositories();
             services.AddAutoMapper();
+            services.AddResponseCompression();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,6 +46,8 @@ namespace CompanyCob.Api
             {
                 endpoints.MapControllers();
             });
+
+            app.UseResponseCompression();
         }
     }
 }

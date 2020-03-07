@@ -1,0 +1,469 @@
+{
+	"info": {
+		"_postman_id": "f2b8b669-6821-4d6f-982d-5b814924e8f5",
+		"name": "CompanyCob",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "AddDevedor",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nome\": \"Joao Antonio\",\n\t\"cpf\": 22223344556\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/admin/devedores",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"admin",
+						"devedores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AlterDevedor",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": 1,\n\t\"nome\": \"Jose Antonio\",\n\t\"cpf\": 22223344556\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/admin/devedores",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"admin",
+						"devedores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteDevedor",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": 1,\n\t\"nome\": \"Jose Antonio\",\n\t\"cpf\": 22223344556\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/admin/devedores",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"admin",
+						"devedores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AlterDivida",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": 1,\n\t\"idDevedor\": 1,\n\t\"idCarteira\": 1,\n\t\"numeroDivida\": \"xx.xx.xx-xx\",\n\t\"valorOriginal\": 3895.68,\n\t\"vencimento\": \"2020-12-05\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/admin/dividas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"admin",
+						"dividas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteDivida",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": 1,\n\t\"idDevedor\": 1,\n\t\"idCarteira\": 1,\n\t\"numeroDivida\": \"xx.xx.xx-xx\",\n\t\"valorOriginal\": 3895.68,\n\t\"vencimento\": \"2020-12-05\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/admin/dividas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"admin",
+						"dividas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AlterCarteira",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": 1,\n\t\"nome\": \"Santander\",\n\t\"razaoSocial\": \"Banco Santander S/A\",\n\t\"qtdParcelasMaxima\": 10,\n\t\"tipoJuros\": 1,\n\t\"percentualJuros\": 0.5,\n\t\"comissao\": 9.5\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/admin/carteiras",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"admin",
+						"carteiras"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteCarteira",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": 1,\n\t\"nome\": \"Santander\",\n\t\"razaoSocial\": \"Banco Santander S/A\",\n\t\"qtdParcelasMaxima\": 10,\n\t\"tipoJuros\": 1,\n\t\"percentualJuros\": 0.5,\n\t\"comissao\": 9.5\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/admin/carteiras",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"admin",
+						"carteiras"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllDevedores",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/v1/admin/devedores",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"admin",
+						"devedores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetDevedor",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/v1/admin/devedores/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"admin",
+						"devedores",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllDividas",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nome\": \"Devedor 1\",\n\t\"cpf\": 11223344556\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/admin/dividas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"admin",
+						"dividas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetDivida",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nome\": \"Devedor 1\",\n\t\"cpf\": 11223344556\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/admin/dividas/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"admin",
+						"dividas",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllCarteiras",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nome\": \"Devedor 1\",\n\t\"cpf\": 11223344556\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/admin/carteiras",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"admin",
+						"carteiras"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetCarteira",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nome\": \"Devedor 1\",\n\t\"cpf\": 11223344556\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/admin/carteiras/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"admin",
+						"carteiras",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddCarteira",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nome\": \"Bradesco\",\n\t\"razaoSocial\": \"Banco Bradesco S/A\",\n\t\"qtdParcelasMaxima\": 8,\n\t\"tipoJuros\": 0,\n\t\"percentualJuros\": 0.3,\n\t\"comissao\": 10\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/admin/carteiras",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"admin",
+						"carteiras"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddDivida",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"idDevedor\": 1,\n\t\"idCarteira\": 1,\n\t\"numeroDivida\": \"1234.5678.9123\",\n\t\"valorOriginal\": 250.60,\n\t\"vencimento\": \"2020-04-05\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/admin/dividas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"admin",
+						"dividas"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

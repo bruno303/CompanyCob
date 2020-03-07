@@ -12,7 +12,7 @@ namespace CompanyCob.Repository.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=localhost,1433;Database=companycob;User ID=sa;Password=1q2w3e%&!");
+            optionsBuilder.UseSqlServer(@"Server=192.168.0.136,1433;Database=companycob;User ID=sa;Password=admin!@#123");
         }
 
         protected override void OnModelCreating(ModelBuilder builder)

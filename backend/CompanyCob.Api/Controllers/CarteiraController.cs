@@ -13,41 +13,83 @@ namespace CompanyCob.Api.Controllers
     {
         private readonly ILogger<CarteiraController> _logger;
         private readonly ICarteiraRepository _carteiraRepository;
+        private readonly IDividaRepository _dividaRepository;
+        private readonly IDevedorRepository _devedorRepository;
         private readonly IMapper _mapper;
 
-        public CarteiraController(ILogger<CarteiraController> logger, ICarteiraRepository carteiraRepository,
+        public CarteiraController(
+            ILogger<CarteiraController> logger,
+            ICarteiraRepository carteiraRepository,
+            IDividaRepository dividaRepository,
+            IDevedorRepository devedorRepository,
             IMapper mapper)
         {
             _logger = logger;
             _carteiraRepository = carteiraRepository;
+            _dividaRepository = dividaRepository;
+            _devedorRepository = devedorRepository;
             _mapper = mapper;
         }
 
         [HttpGet("v1/admin/carteiras")]
         public async Task<IActionResult> GetAll()
         {
-            var results = await _carteiraRepository.GetAll();
+            _logger.LogInformation("Carregando todas as carteiras");
+            var results = await _carteiraRepository.GetAllAsync();
+
+            _logger.LogInformation("Carregando dívidas das carteiras");
+            foreach (var result in results)
+            {
+                result.Dividas = await _dividaRepository.GetByCarteiraAsync(result);
+                foreach (var divida in result.Dividas)
+                {
+                    divida.Devedor = await _devedorRepository.GetAsync(divida.IdDevedor);
+                }
+            }
+
+            _logger.LogInformation("Quantidade carteiras: {0}", results.Count);
             return new JsonResult(results);
         }
 
         [HttpGet("v1/admin/carteiras/{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await _carteiraRepository.Get(id);
+            _logger.LogInformation("Carregando carteira. ID: {0}", id);
+
+            var result = await _carteiraRepository.GetAsync(id);
             if (result == null)
             {
+                _logger.LogInformation("Carteira não encontrada");
                 return NotFound();
             }
 
+            _logger.LogInformation("Carregando dívidas da carteira");
+            result.Dividas = await _dividaRepository.GetByCarteiraAsync(result);
+
+            _logger.LogInformation("Carregando devedores");
+            foreach (var divida in result.Dividas)
+            {
+                divida.Devedor = await _devedorRepository.GetAsync(divida.IdDevedor);
+            }
+
+            _logger.LogInformation("Carteira carregada com sucesso");
             return new JsonResult(result);
         }
 
         [HttpPost("v1/admin/carteiras")]
         public async Task<IActionResult> Post([FromBody] CarteiraEditViewModel model)
         {
+            _logger.LogInformation("Validando nova carteira");
+
             model.Validate();
             if (model.Invalid)
             {
+                _logger.LogInformation("Carteira não é válida:");
+                foreach (var notificacao in model.Notifications)
+                {
+                    _logger.LogInformation("* {0}", notificacao.Message);
+                }
+
                 return new JsonResult(new ResultViewModel()
                 {
                     Success = false,
@@ -56,10 +98,12 @@ namespace CompanyCob.Api.Controllers
                 });
             }
 
+            _logger.LogInformation("Salvando nova carteira");
             var carteira = _mapper.Map<Carteira>(model);
 
-            await _carteiraRepository.Save(carteira);
+            await _carteiraRepository.SaveAsync(carteira);
 
+            _logger.LogInformation("Nova carteira cadastrada com sucesso");
             return new JsonResult(new ResultViewModel()
             {
                 Success = true,
@@ -71,9 +115,17 @@ namespace CompanyCob.Api.Controllers
         [HttpPut("v1/admin/carteiras")]
         public async Task<IActionResult> Put([FromBody] CarteiraEditViewModel model)
         {
+            _logger.LogInformation("Validando alterações na carteira {0}", model.Id);
+
             model.Validate();
             if (model.Invalid)
             {
+                _logger.LogInformation("Alterações na carteira não são válidas:");
+                foreach (var notificacao in model.Notifications)
+                {
+                    _logger.LogInformation("* {0}", notificacao.Message);
+                }
+
                 return new JsonResult(new ResultViewModel()
                 {
                     Success = false,
@@ -82,9 +134,12 @@ namespace CompanyCob.Api.Controllers
                 });
             }
 
+            _logger.LogInformation("Atualizando carteira");
             var carteira = _mapper.Map<Carteira>(model);
 
-            await _carteiraRepository.Update(carteira);
+            await _carteiraRepository.UpdateAsync(carteira);
+
+            _logger.LogInformation("Carteira atualizada com sucesso");
             return new JsonResult(new ResultViewModel()
             {
                 Success = true,
@@ -96,8 +151,10 @@ namespace CompanyCob.Api.Controllers
         [HttpDelete("v1/admin/carteiras")]
         public async Task<IActionResult> Delete([FromBody] Carteira carteira)
         {
-            await _carteiraRepository.Delete(carteira);
+            _logger.LogInformation("Deletando carteira {0}", carteira.Id);
+            await _carteiraRepository.DeleteAsync(carteira);
 
+            _logger.LogInformation("Carteira deletada com sucesso");
             return new JsonResult(new ResultViewModel()
             {
                 Success = true,

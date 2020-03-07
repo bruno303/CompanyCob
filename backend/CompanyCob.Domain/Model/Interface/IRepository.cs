@@ -5,14 +5,14 @@ namespace CompanyCob.Domain.Model.Interface
 {
     public interface IRepository<TType, TKey> where TType : class
     {
-        Task<IList<TType>> GetAll();
+        Task<IList<TType>> GetAllAsync();
 
-        Task<TType> Get(TKey id);
+        Task<TType> GetAsync(TKey id);
 
-        Task Save(TType entity);
+        Task SaveAsync(TType entity);
 
-        Task Update(TType entity);
+        Task UpdateAsync(TType entity);
 
-        Task Delete(TType entity);
+        Task DeleteAsync(TType entity);
     }
 }

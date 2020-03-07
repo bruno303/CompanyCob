@@ -11,8 +11,8 @@ namespace CompanyCob.Repository.Data.Map
             builder.ToTable("Divida");
             builder.HasKey(c => c.Id);
             builder.Property(c => c.NumeroDivida).IsRequired().HasMaxLength(60).HasColumnType("varchar(60)");
-            builder.HasOne(c => c.Devedor).WithMany(c => c.Dividas).IsRequired();
-            builder.HasOne(c => c.Carteira).WithMany(c => c.Dividas).IsRequired();
+            builder.HasOne(c => c.Devedor).WithMany(c => c.Dividas).HasForeignKey(divida => divida.IdDevedor).IsRequired();
+            builder.HasOne(c => c.Carteira).WithMany(c => c.Dividas).HasForeignKey(divida => divida.IdCarteira).IsRequired();
 
             builder.Property(p => p.ValorOriginal).IsRequired().HasColumnType("money");
             builder.Property(p => p.Vencimento).IsRequired().HasColumnType("datetime");
