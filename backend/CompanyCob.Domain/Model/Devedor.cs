@@ -6,7 +6,7 @@ namespace CompanyCob.Domain.Model
     {
         public int Id { get; set; }
         public string Nome { get; set; }
-        public int Cpf { get; set; }
-        public IEnumerable<Contrato> Contratos { get; set; }
+        public long Cpf { get; set; }
+        public IEnumerable<Divida> Dividas { get; set; }
     }
 }

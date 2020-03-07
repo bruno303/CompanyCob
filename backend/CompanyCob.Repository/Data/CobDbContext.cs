@@ -8,8 +8,7 @@ namespace CompanyCob.Repository.Data
     {
         public DbSet<Carteira> Carteiras { get; set; }
         public DbSet<Devedor> Devedores { get; set; }
-        public DbSet<Contrato> Contratos { get; set; }
-        public DbSet<Parcela> Parcelas { get; set; }
+        public DbSet<Divida> Dividas { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -19,9 +18,8 @@ namespace CompanyCob.Repository.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new CarteiraMap());
-            builder.ApplyConfiguration(new ContratoMap());
+            builder.ApplyConfiguration(new DividaMap());
             builder.ApplyConfiguration(new DevedorMap());
-            builder.ApplyConfiguration(new ParcelaMap());
         }
     }
 }

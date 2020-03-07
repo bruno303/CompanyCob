@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CompanyCob.Repository.Data;
-using CompanyCob.Repository.Interface;
 using Microsoft.EntityFrameworkCore;
+using CompanyCob.Domain.Model.Interface;
+using System.Linq;
 
 namespace CompanyCob.Repository
 {
@@ -17,7 +18,7 @@ namespace CompanyCob.Repository
             this._context = context;
         }
 
-        public virtual async Task<IEnumerable<TType>> Get()
+        public virtual async Task<IList<TType>> GetAll()
         {
             /*
             AsNoTracking retira algumas informações internas do EF, deixando a consulta mais "leve"

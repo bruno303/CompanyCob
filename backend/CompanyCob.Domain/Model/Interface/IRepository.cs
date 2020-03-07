@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace CompanyCob.Repository.Interface
+namespace CompanyCob.Domain.Model.Interface
 {
     public interface IRepository<TType, TKey> where TType : class
     {
-        Task<IEnumerable<TType>> Get();
+        Task<IList<TType>> GetAll();
 
         Task<TType> Get(TKey id);
 

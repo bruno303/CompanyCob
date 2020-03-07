@@ -4,14 +4,16 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CompanyCob.Repository.Data.Map
 {
-    public class ParcelaMap : IEntityTypeConfiguration<Parcela>
+    public class DividaMap : IEntityTypeConfiguration<Divida>
     {
-        public void Configure(EntityTypeBuilder<Parcela> builder)
+        public void Configure(EntityTypeBuilder<Divida> builder)
         {
-            builder.ToTable("Parcela");
+            builder.ToTable("Divida");
+            builder.HasKey(c => c.Id);
+            builder.Property(c => c.NumeroDivida).IsRequired().HasMaxLength(60).HasColumnType("varchar(60)");
+            builder.HasOne(c => c.Devedor).WithMany(c => c.Dividas).IsRequired();
+            builder.HasOne(c => c.Carteira).WithMany(c => c.Dividas).IsRequired();
 
-            builder.HasKey(p => p.Id);
-            builder.HasOne(p => p.Contrato).WithMany(c => c.Parcelas).IsRequired();
             builder.Property(p => p.ValorOriginal).IsRequired().HasColumnType("money");
             builder.Property(p => p.Vencimento).IsRequired().HasColumnType("datetime");
 

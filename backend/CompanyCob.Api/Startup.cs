@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using CompanyCob.DependencyInjection;
+using CompanyCob.Api.Configuration;
 
 namespace CompanyCob.Api
 {
@@ -26,6 +28,8 @@ namespace CompanyCob.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddRepositories();
+            services.AddAutoMapper();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,8 +39,6 @@ namespace CompanyCob.Api
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseHttpsRedirection();
 
             app.UseRouting();
 
