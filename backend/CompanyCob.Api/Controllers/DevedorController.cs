@@ -75,6 +75,30 @@ namespace CompanyCob.Api.Controllers
             return new JsonResult(result);
         }
 
+        [HttpGet("v1/admin/devedores/cpf/{cpf}")]
+        public async Task<IActionResult> GetByCpf(long cpf)
+        {
+            _logger.LogInformation("Carregando devedor. CPF: {0}", cpf);
+            var result = await _devedorRepository.GetByCpfAsync(cpf);
+            if (result == null)
+            {
+                _logger.LogInformation("Devedor não encontrado");
+                return NotFound();
+            }
+
+            _logger.LogInformation("Carregando dívidas do devedor");
+            result.Dividas = await _dividaRepository.GetByDevedorAsync(result);
+
+            _logger.LogInformation("Carregando carteiras");
+            foreach (var divida in result.Dividas)
+            {
+                divida.Carteira = await _carteiraRepository.GetAsync(divida.IdCarteira);
+            }
+
+            _logger.LogInformation("Devedor carregado com sucesso");
+            return new JsonResult(result);
+        }
+
         [HttpPost("v1/admin/devedores")]
         public async Task<IActionResult> Post([FromBody] DevedorEditViewModel model)
         {
