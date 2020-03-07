@@ -1,0 +1,8 @@
+.default-submit-button {
+    margin-left: 5px;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 3px;
+    text-align: center;
+    width: 150px;
+}
