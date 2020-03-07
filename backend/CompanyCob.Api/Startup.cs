@@ -33,6 +33,8 @@ namespace CompanyCob.Api
         {
             context.Database.Migrate();
 
+            app.UseCors(policy => policy.AllowAnyOrigin());
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
