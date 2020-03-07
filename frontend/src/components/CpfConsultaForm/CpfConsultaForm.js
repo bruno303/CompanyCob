@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 import './CpfConsultaForm.css';
 import CpfInput from '../CpfInput/CpfInput';
-import DefaultSubmitButton from '../DefaultSubmitButton/DefaultSubmitButton';
+import CpfConsultaSubmitButton from '../CpfConsultaSubmitButton/CpfConsultaSubmitButton';
 
 class CpfConsultaForm extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <div className="cpf-form">
-                <CpfInput />
-                <DefaultSubmitButton buttonText="Consultar dívidas" />
+                <div className="cpf-form-column">
+                    <div className="cpf-form-row">
+                        <CpfInput />
+                        <CpfConsultaSubmitButton buttonText="Consultar dívidas" />
+                    </div>
+                    <div className="cpf-form-column">
+                        <span id="msg-erro"></span>
+                    </div>
+                </div>
             </div>
         );
     }

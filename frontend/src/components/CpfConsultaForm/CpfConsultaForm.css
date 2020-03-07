@@ -1,4 +1,15 @@
-.cpf-form {
+.cpf-form .cpf-form-row {
     display: inline-flex;
     flex-direction: row;
+    padding-bottom: 5px;
+}
+
+.cpf-form .cpf-form-column {
+    display: inline-flex;
+    flex-direction: column;
+}
+
+#msg-erro {
+    color: rgb(163, 1, 1);
+    font-weight: bold;
 }

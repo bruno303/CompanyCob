@@ -11,9 +11,9 @@ class NavBar extends Component {
             <div className="nav">
                 <input type="checkbox" id="nav-check" />
                 <div className="nav-header">
-                    <a className="cursor-pointer">
+                    <button className="navbar-button cursor-pointer">
                         <div className="nav-title" onClick={this.backHome}>Company Cob App</div>
-                    </a>
+                    </button>
                 </div>
                 <div className="nav-btn">
                     <label htmlFor="nav-check">
@@ -24,7 +24,7 @@ class NavBar extends Component {
                 </div>
 
                 <div className="nav-links">
-                    <a href="//github.com/bruno303" target="_blank">Github</a>
+                    <a href="//github.com/bruno303/CompanyCob" rel="noopener noreferrer" target="_blank">Github</a>
                 </div>
             </div>
         )

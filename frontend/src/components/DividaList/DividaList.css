@@ -1,0 +1,18 @@
+.dividas-list .row {
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr 2fr 2fr;
+}
+
+.dividas-list .row div{
+    text-align: center;
+}
+
+.header-font {
+    font-size: 20px;
+    padding-bottom: 10px;
+    font-weight: bold;
+}
+
+.title {
+    margin-bottom: 20px;
+}
