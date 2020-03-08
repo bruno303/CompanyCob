@@ -13,6 +13,7 @@ namespace CompanyCob.Api.Controllers
             _logger = logger;
         }
 
+        [HttpGet("/error")]
         public IActionResult ErrorHandler()
         {
             _logger.LogError("Erro capturado. Enviando resposta ao cliente...");
