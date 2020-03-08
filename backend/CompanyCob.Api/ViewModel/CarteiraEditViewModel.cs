@@ -11,7 +11,7 @@ namespace CompanyCob.Api.ViewModel
         public int QtdParcelasMaxima { get; set; }
         public int TipoJuros { get; set; }
         public decimal PercentualJuros { get; set; }
-        public decimal Comissao { get; set; }
+        public decimal PercentualComissao { get; set; }
 
         public void Validate()
         {
@@ -28,7 +28,7 @@ namespace CompanyCob.Api.ViewModel
 
                 .IsGreaterThan(PercentualJuros, 0, "PercentualJuros", "O juros deve ser maior que zero")
                 
-                .IsGreaterThan(Comissao, 0, "Comissao", "A comissão deve ser maior que zero")
+                .IsGreaterThan(PercentualComissao, 0, "PercentualComissao", "A comissão deve ser maior que zero")
             );
         }
     }

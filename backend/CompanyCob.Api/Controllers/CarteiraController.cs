@@ -48,7 +48,7 @@ namespace CompanyCob.Api.Controllers
             }
 
             _logger.LogInformation("Quantidade carteiras: {0}", results.Count);
-            return new JsonResult(results);
+            return Ok(results);
         }
 
         [HttpGet("v1/admin/carteiras/{id}")]
@@ -73,7 +73,7 @@ namespace CompanyCob.Api.Controllers
             }
 
             _logger.LogInformation("Carteira carregada com sucesso");
-            return new JsonResult(result);
+            return Ok(result);
         }
 
         [HttpPost("v1/admin/carteiras")]
@@ -90,7 +90,7 @@ namespace CompanyCob.Api.Controllers
                     _logger.LogInformation("* {0}", notificacao.Message);
                 }
 
-                return new JsonResult(new ResultViewModel()
+                return Ok(new ResultViewModel()
                 {
                     Success = false,
                     Message = "Não foi possível cadastrar a carteira",
@@ -104,7 +104,7 @@ namespace CompanyCob.Api.Controllers
             await _carteiraRepository.SaveAsync(carteira);
 
             _logger.LogInformation("Nova carteira cadastrada com sucesso");
-            return new JsonResult(new ResultViewModel()
+            return Ok(new ResultViewModel()
             {
                 Success = true,
                 Message = "Carteira cadastrada com sucesso!",
@@ -126,7 +126,7 @@ namespace CompanyCob.Api.Controllers
                     _logger.LogInformation("* {0}", notificacao.Message);
                 }
 
-                return new JsonResult(new ResultViewModel()
+                return Ok(new ResultViewModel()
                 {
                     Success = false,
                     Message = "Não foi possível alterar a carteira",
@@ -140,7 +140,7 @@ namespace CompanyCob.Api.Controllers
             await _carteiraRepository.UpdateAsync(carteira);
 
             _logger.LogInformation("Carteira atualizada com sucesso");
-            return new JsonResult(new ResultViewModel()
+            return Ok(new ResultViewModel()
             {
                 Success = true,
                 Message = "Carteira alterada com sucesso!",
@@ -155,7 +155,7 @@ namespace CompanyCob.Api.Controllers
             await _carteiraRepository.DeleteAsync(carteira);
 
             _logger.LogInformation("Carteira deletada com sucesso");
-            return new JsonResult(new ResultViewModel()
+            return Ok(new ResultViewModel()
             {
                 Success = true,
                 Message = "Carteira excluída com sucesso!",

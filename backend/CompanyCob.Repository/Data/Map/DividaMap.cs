@@ -21,6 +21,7 @@ namespace CompanyCob.Repository.Data.Map
             builder.Ignore(p => p.DiasAtraso);
             builder.Ignore(p => p.ValorJuros);
             builder.Ignore(p => p.ValorFinal);
+            builder.Ignore(p => p.ValorComissao);
         }
     }
 }

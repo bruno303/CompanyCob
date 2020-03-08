@@ -28,3 +28,8 @@ dotnet run -p CompanyCob.Api/CompanyCob.Api.csproj
 ```
 
 * Caso use o postman para testar a API, requisições de exemplo se encontram em: **/CompanyCob/backend/CompanyCob.Api/Samples/postman_collection.json**. Basta importar esse arquivo no postman e será criada uma collection chamada CompanyCob com as requisições de exemplo.
+
+* A API está documentada através do swagger. Para acessar as configurações acesse a url (considerado a rota default):
+```
+http://localhost:5000/swagger
+```
