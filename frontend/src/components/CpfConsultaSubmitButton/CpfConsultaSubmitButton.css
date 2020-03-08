@@ -6,3 +6,7 @@
     text-align: center;
     width: 150px;
 }
+
+.cpf-submit-button>i {
+    margin-right: 5px;
+}

@@ -111,7 +111,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"id\": 1,\n\t\"idDevedor\": 1,\n\t\"idCarteira\": 1,\n\t\"numeroDivida\": \"xx.xx.xx-xx\",\n\t\"valorOriginal\": 3895.68,\n\t\"vencimento\": \"2020-12-05\"\n}"
+					"raw": "{\n\t\"id\": 1,\n\t\"idDevedor\": 1,\n\t\"idCarteira\": 1,\n\t\"numeroDivida\": \"1234.5678.9123\",\n\t\"valorOriginal\": 3000.00,\n\t\"vencimento\": \"2020-02-27\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/v1/admin/dividas",
@@ -173,7 +173,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"id\": 1,\n\t\"nome\": \"Santander\",\n\t\"razaoSocial\": \"Banco Santander S/A\",\n\t\"qtdParcelasMaxima\": 10,\n\t\"tipoJuros\": 1,\n\t\"percentualJuros\": 0.5,\n\t\"comissao\": 9.5\n}"
+					"raw": "{\n\t\"id\": 1,\n\t\"nome\": \"Bradesco\",\n\t\"razaoSocial\": \"Banco Bradesco S/A\",\n\t\"qtdParcelasMaxima\": 3,\n\t\"tipoJuros\": 1,\n\t\"percentualJuros\": 0.2,\n\t\"percentualComissao\": 10\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/v1/admin/carteiras",
@@ -260,6 +260,51 @@
 						"admin",
 						"devedores",
 						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetDividaCalculada",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/v1/calculo/1/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"calculo",
+						"1",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetDevedorByCpf",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/v1/admin/devedores/cpf/11223344556",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"admin",
+						"devedores",
+						"cpf",
+						"11223344556"
 					]
 				}
 			},
@@ -416,7 +461,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nome\": \"Bradesco\",\n\t\"razaoSocial\": \"Banco Bradesco S/A\",\n\t\"qtdParcelasMaxima\": 8,\n\t\"tipoJuros\": 0,\n\t\"percentualJuros\": 0.3,\n\t\"comissao\": 10\n}"
+					"raw": "{\n\t\"nome\": \"Bradesco\",\n\t\"razaoSocial\": \"Banco Bradesco S/A\",\n\t\"qtdParcelasMaxima\": 8,\n\t\"tipoJuros\": 0,\n\t\"percentualJuros\": 0.3,\n\t\"percentualComissao\": 10\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/v1/admin/carteiras",
@@ -447,7 +492,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"idDevedor\": 1,\n\t\"idCarteira\": 1,\n\t\"numeroDivida\": \"1234.5678.9123\",\n\t\"valorOriginal\": 250.60,\n\t\"vencimento\": \"2020-04-05\"\n}"
+					"raw": "{\n\t\"idDevedor\": 1,\n\t\"idCarteira\": 1,\n\t\"numeroDivida\": \"9874.6543.3210\",\n\t\"valorOriginal\": 2854.60,\n\t\"vencimento\": \"2020-02-05\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/v1/admin/dividas",

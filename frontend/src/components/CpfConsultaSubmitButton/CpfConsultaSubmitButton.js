@@ -34,7 +34,12 @@ class CpfConsultaSubmitButton extends Component {
                 this.showError(`Erro ao consultar o devedor. Status ${data.status}`);
             }
         } catch(err) {
-            this.showError(`Erro ao consultar o devedor: ${err}`);
+            if (err.message.indexOf("404") > -1){
+                this.showError(`Devedor não encontrado`);
+            }
+            else {
+                this.showError(`Erro ao consultar o devedor: ${err}`);
+            }
         }
     }
 
@@ -51,7 +56,10 @@ class CpfConsultaSubmitButton extends Component {
 
     render() {
         return (
-            <button id="submit-cpf" className="cpf-submit-button" onClick={this.handleClick}>{this.buttonText}</button>
+            <button id="submit-cpf" className="cpf-submit-button" onClick={this.handleClick}>
+                <i className="fas fa-search-dollar"></i>
+                {this.buttonText}
+            </button>
         );
     }
 }

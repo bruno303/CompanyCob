@@ -24,7 +24,7 @@ class NavBar extends Component {
                 </div>
 
                 <div className="nav-links">
-                    <a href="//github.com/bruno303/CompanyCob" rel="noopener noreferrer" target="_blank">Github</a>
+                    <a href="//github.com/bruno303/CompanyCob" rel="noopener noreferrer" target="_blank"><i className="fab fa-github"></i>Github</a>
                 </div>
             </div>
         )

@@ -1,14 +1,82 @@
 import React, { Component } from 'react';
 import './DividaList.css';
 import { cpfMask } from '../../service/CpfService';
+import axios from 'axios';
 
 class DividaList extends Component {
-    data = {};
+    dataDevedor = {};
+
+    state = { parcelas: [] };
 
     constructor(props) {
         super(props);
 
-        this.data = props.data;
+        this.dataDevedor = props.data;
+        this.calcDividasHandler = this.calcDividasHandler.bind(this);
+    }
+
+    showModal() {
+        const modal = document.getElementById('modal-result');
+        const span = document.querySelector("span.close");
+
+        modal.style.display = "block";
+
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+    }
+
+    showError(msg) {
+        alert(msg);
+    }
+
+    async getDividaCalculada(idDevedor, idDivida) {
+        try {
+            const data = await axios.get(`http://localhost:5000/v1/calculo/${idDevedor}/${idDivida}`)
+            if (data.status === 200) {
+                this.setState({ parcelas: data.data.parcelas });
+            } else {
+                this.showError(`Erro ao consultar as parcelas calculadas. Status ${data.status}`);
+            }
+        } catch (err) {
+            this.showError(`Erro ao consultar as parcelas calculadas: ${err}`);
+        }
+    }
+
+    async calcDividasHandler(e) {
+        const idDevedor = this.dataDevedor.id;
+        const idDivida = e.target.getAttribute("data-divida-id");
+
+        await this.getDividaCalculada(idDevedor, idDivida);
+        this.renderDividaCalculada();
+
+        this.showModal();
+    }
+
+    renderDividaCalculada() {
+        let result = [];
+
+        for (let index = 0; index < this.state.parcelas.length; index++) {
+
+            const parcela = this.state.parcelas[index];
+            const vencimento = new Date(parcela.vencimento);
+
+            result.push(
+                <div key={index} className="row">
+                    <div>{parcela.numero}</div>
+                    <div>R$ {parcela.valor.toFixed(2)}</div>
+                    <div>{vencimento.toLocaleDateString()}</div>
+                </div>
+            );
+        }
+
+        return result;
     }
 
     renderDividas() {
@@ -16,15 +84,25 @@ class DividaList extends Component {
 
         for (let index = 0; index < this.props.data.dividas.length; index++) {
 
-            const vencimento = new Date(this.props.data.dividas[index].vencimento);
+            const idDivida = this.dataDevedor.dividas[index].id;
+            const vencimento = new Date(this.dataDevedor.dividas[index].vencimento);
 
             result.push(
-                <div key={index} className="row">
-                    <div>{this.props.data.dividas[index].id}</div>
-                    <div>{this.props.data.dividas[index].numeroDivida}</div>
-                    <div>{vencimento.toLocaleDateString()}</div>
-                    <div>R$ {this.props.data.dividas[index].valorOriginal.toFixed(2)}</div>
-                    <div>{this.props.data.dividas[index].carteira.nome}</div>
+                <div key={index}>
+                    <div className="row">
+                        <button data-divida-id={idDivida} className="btn-calcular" onClick={this.calcDividasHandler}>
+                            <i className="fas fa-calculator"></i>
+                            Calcular
+                        </button>
+                        <div>{idDivida}</div>
+                        <div>{this.dataDevedor.dividas[index].numeroDivida}</div>
+                        <div>{vencimento.toLocaleDateString()}</div>
+                        <div>R$ {this.dataDevedor.dividas[index].valorOriginal.toFixed(2)}</div>
+                        <div>{this.dataDevedor.dividas[index].carteira.nome}</div>
+                    </div>
+                    <div className="row show-results" data-divida-id={idDivida}>
+
+                    </div>
                 </div>
             );
         }
@@ -35,9 +113,25 @@ class DividaList extends Component {
     render() {
         return (
             <>
-                <div className="title header-font">{this.data.nome} - {cpfMask(this.data.cpf.toString())}</div>
+                <div id="modal-result" className="modal">
+                    <div className="modal-content">
+                        <span className="close">&times;</span>
+                        <div id="results-div" className="results-div">
+                            <div className="row header-font">
+                                <div>Parcela</div>
+                                <div>Valor</div>
+                                <div>Vencimento</div>
+                            </div>
+                            {this.renderDividaCalculada()}
+                        </div>
+
+                    </div>
+                </div>
+
+                <div className="title header-font">{this.dataDevedor.nome} - {cpfMask(this.dataDevedor.cpf.toString())}</div>
                 <div className="dividas-list">
                     <div className="row header-font">
+                        <div></div>
                         <div>ID</div>
                         <div>Número Dívida</div>
                         <div>Vencimento</div>

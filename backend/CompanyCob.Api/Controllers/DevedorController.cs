@@ -59,7 +59,7 @@ namespace CompanyCob.Api.Controllers
             if (result == null)
             {
                 _logger.LogInformation("Devedor não encontrado");
-                return NotFound();
+                return NotFound(new { result = false, message = "Devedor não encontrado" });
             }
 
             _logger.LogInformation("Carregando dívidas do devedor");
@@ -83,7 +83,7 @@ namespace CompanyCob.Api.Controllers
             if (result == null)
             {
                 _logger.LogInformation("Devedor não encontrado");
-                return NotFound();
+                return NotFound(new { result = false, message = "Devedor não encontrado" });
             }
 
             _logger.LogInformation("Carregando dívidas do devedor");
