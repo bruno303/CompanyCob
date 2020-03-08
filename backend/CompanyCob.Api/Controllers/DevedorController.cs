@@ -48,7 +48,7 @@ namespace CompanyCob.Api.Controllers
             }
 
             _logger.LogInformation("Quantidade devedores: {0}", results.Count);
-            return new JsonResult(results);
+            return Ok(results);
         }
 
         [HttpGet("v1/admin/devedores/{id}")]
@@ -72,7 +72,31 @@ namespace CompanyCob.Api.Controllers
             }
 
             _logger.LogInformation("Devedor carregado com sucesso");
-            return new JsonResult(result);
+            return Ok(result);
+        }
+
+        [HttpGet("v1/admin/devedores/cpf/{cpf}")]
+        public async Task<IActionResult> GetByCpf(long cpf)
+        {
+            _logger.LogInformation("Carregando devedor. CPF: {0}", cpf);
+            var result = await _devedorRepository.GetByCpfAsync(cpf);
+            if (result == null)
+            {
+                _logger.LogInformation("Devedor não encontrado");
+                return NotFound();
+            }
+
+            _logger.LogInformation("Carregando dívidas do devedor");
+            result.Dividas = await _dividaRepository.GetByDevedorAsync(result);
+
+            _logger.LogInformation("Carregando carteiras");
+            foreach (var divida in result.Dividas)
+            {
+                divida.Carteira = await _carteiraRepository.GetAsync(divida.IdCarteira);
+            }
+
+            _logger.LogInformation("Devedor carregado com sucesso");
+            return Ok(result);
         }
 
         [HttpPost("v1/admin/devedores")]
@@ -88,7 +112,7 @@ namespace CompanyCob.Api.Controllers
                     _logger.LogInformation("* {0}", notificacao.Message);
                 }
 
-                return new JsonResult(new ResultViewModel()
+                return Ok(new ResultViewModel()
                 {
                     Success = false,
                     Message = "Não foi possível cadastrar o devedor",
@@ -102,7 +126,7 @@ namespace CompanyCob.Api.Controllers
             await _devedorRepository.SaveAsync(devedor);
 
             _logger.LogInformation("Novo devedor cadastrado com sucesso");
-            return new JsonResult(new ResultViewModel()
+            return Ok(new ResultViewModel()
             {
                 Success = true,
                 Message = "Devedor cadastrado com sucesso!",
@@ -123,7 +147,7 @@ namespace CompanyCob.Api.Controllers
                     _logger.LogInformation("* {0}", notificacao.Message);
                 }
 
-                return new JsonResult(new ResultViewModel()
+                return Ok(new ResultViewModel()
                 {
                     Success = false,
                     Message = "Não foi possível alterar o devedor",
@@ -137,7 +161,7 @@ namespace CompanyCob.Api.Controllers
             await _devedorRepository.UpdateAsync(devedor);
 
             _logger.LogInformation("Devedor atualizado com sucesso");
-            return new JsonResult(new ResultViewModel()
+            return Ok(new ResultViewModel()
             {
                 Success = true,
                 Message = "Devedor alterado com sucesso!",
@@ -152,7 +176,7 @@ namespace CompanyCob.Api.Controllers
             await _devedorRepository.DeleteAsync(devedor);
 
             _logger.LogInformation("Devedor deletado com sucesso");
-            return new JsonResult(new ResultViewModel()
+            return Ok(new ResultViewModel()
             {
                 Success = true,
                 Message = "Devedor excluído com sucesso!",

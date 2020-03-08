@@ -45,7 +45,7 @@ namespace CompanyCob.Api.Controllers
             }
 
             _logger.LogInformation("Quantidade dívidas: {0}", results.Count);
-            return new JsonResult(results);
+            return Ok(results);
         }
 
         [HttpGet("v1/admin/dividas/{id}")]
@@ -67,7 +67,7 @@ namespace CompanyCob.Api.Controllers
             result.Devedor = await _devedorRepository.GetAsync(result.IdDevedor);
 
             _logger.LogInformation("Dívida carregada com sucesso");
-            return new JsonResult(result);
+            return Ok(result);
         }
 
         [HttpPost("v1/admin/dividas")]
@@ -84,7 +84,7 @@ namespace CompanyCob.Api.Controllers
                     _logger.LogInformation("* {0}", notificacao.Message);
                 }
 
-                return new JsonResult(new ResultViewModel()
+                return Ok(new ResultViewModel()
                 {
                     Success = false,
                     Message = "Não foi possível cadastrar a dívida",
@@ -98,7 +98,7 @@ namespace CompanyCob.Api.Controllers
             await _dividaRepository.SaveAsync(divida);
 
             _logger.LogInformation("Dívida cadastrada com sucesso");
-            return new JsonResult(new ResultViewModel()
+            return Ok(new ResultViewModel()
             {
                 Success = true,
                 Message = "Dívida cadastrada com sucesso!",
@@ -120,7 +120,7 @@ namespace CompanyCob.Api.Controllers
                     _logger.LogInformation("* {0}", notificacao.Message);
                 }
 
-                return new JsonResult(new ResultViewModel()
+                return Ok(new ResultViewModel()
                 {
                     Success = false,
                     Message = "Não foi possível alterar a dívida",
@@ -134,7 +134,7 @@ namespace CompanyCob.Api.Controllers
             await _dividaRepository.UpdateAsync(divida);
 
             _logger.LogInformation("Dívida atualizada com sucesso");
-            return new JsonResult(new ResultViewModel()
+            return Ok(new ResultViewModel()
             {
                 Success = true,
                 Message = "Dívida alterada com sucesso!",
@@ -149,7 +149,7 @@ namespace CompanyCob.Api.Controllers
             await _dividaRepository.DeleteAsync(divida);
 
             _logger.LogInformation("Dívida deletada com sucesso");
-            return new JsonResult(new ResultViewModel()
+            return Ok(new ResultViewModel()
             {
                 Success = true,
                 Message = "Dívida excluída com sucesso!",

@@ -16,6 +16,7 @@ namespace CompanyCob.Domain.Model
         /* Campos calculados no momento da consulta */
         public int DiasAtraso { get; set; }
         public decimal ValorJuros { get; set; }
+        public decimal ValorComissao { get; set; }
         public decimal ValorFinal { get; set; }
     }
 }
