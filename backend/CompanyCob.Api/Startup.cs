@@ -25,6 +25,7 @@ namespace CompanyCob.Api
             services.AddControllers();
             services.AddRepositories();
             services.AddAutoMapper();
+            services.AddCalculoServices();
             services.AddResponseCompression();
         }
 

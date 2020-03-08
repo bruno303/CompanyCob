@@ -11,7 +11,7 @@ namespace CompanyCob.Domain.Model
         public int QtdParcelasMaxima { get; set; }
         public TipoJurosEnum TipoJuros { get; set; }
         public decimal PercentualJuros { get; set; }
-        public decimal Comissao { get; set; }
+        public decimal PercentualComissao { get; set; }
         public IEnumerable<Divida> Dividas { get; set; }
     }
 }
