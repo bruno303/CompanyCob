@@ -26,6 +26,10 @@ namespace CompanyCob.Api
             services.AddRepositories();
             services.AddAutoMapper();
             services.AddCalculoServices();
+            services.AddSwaggerGen(cfg =>
+            {
+                cfg.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo() { Title = "CompanyCob API", Version = "v1" });
+            });
             services.AddResponseCompression();
         }
 
@@ -40,6 +44,12 @@ namespace CompanyCob.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(cfg =>
+            {
+                cfg.SwaggerEndpoint("v1/swagger.json", "CompanyCob API - v1");
+            });
 
             app.UseRouting();
 
