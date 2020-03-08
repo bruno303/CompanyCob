@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './DividaList.css';
 import { cpfMask } from '../../service/CpfService';
-import axios from 'axios';
+import api from '../../service/api';
 
 class DividaList extends Component {
     dataDevedor = {};
@@ -38,7 +38,7 @@ class DividaList extends Component {
 
     async getDividaCalculada(idDevedor, idDivida) {
         try {
-            const data = await axios.get(`http://localhost:5000/v1/calculo/${idDevedor}/${idDivida}`)
+            const data = await api.get(`/v1/calculo/${idDevedor}/${idDivida}`)
             if (data.status === 200) {
                 this.setState({ parcelas: data.data.parcelas });
             } else {
