@@ -37,7 +37,7 @@ namespace CompanyCob.Api.Controllers
             List<ParcelaNegociacao> parcelas = null;
 
             _logger.LogInformation($"Carregando dívida {idDivida}");
-            divida = await _dividaRepository.GetAsync(idDevedor);
+            divida = await _dividaRepository.GetAsync(idDivida);
 
             if (divida.IdDevedor != idDevedor)
             {
