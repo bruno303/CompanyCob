@@ -67,3 +67,11 @@ npm start
 yarn start
 ```
 A configuração da API em c# se encontra em **CompanyCob/frontend/src/service/api.js**, onde é definida a baseURL como **http://localhost:5000**
+
+## Autor
+
+* **Bruno Oliveira** - [Github](https://github.com/bruno303)
+
+## Licença
+
+Este projeto está licenciado sob a licença MIT. Veja o arquivo [LICENSE](https://github.com/bruno303/CompanyCob/blob/master/LICENSE) para mais detalhes.
