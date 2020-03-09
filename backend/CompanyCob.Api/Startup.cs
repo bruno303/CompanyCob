@@ -23,7 +23,7 @@ namespace CompanyCob.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddRepositories(Configuration);
+            services.AddRepositories();
             services.AddAutoMapper();
             services.AddCalculoService();
             services.AddSwaggerGen(cfg =>

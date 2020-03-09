@@ -12,6 +12,7 @@ namespace CompanyCob.Api.ViewModel
         public int TipoJuros { get; set; }
         public decimal PercentualJuros { get; set; }
         public decimal PercentualComissao { get; set; }
+        public string TelefoneContato { get; set; }
 
         public void Validate()
         {
@@ -29,6 +30,9 @@ namespace CompanyCob.Api.ViewModel
                 .IsGreaterThan(PercentualJuros, 0, "PercentualJuros", "O juros deve ser maior que zero")
                 
                 .IsGreaterThan(PercentualComissao, 0, "PercentualComissao", "A comissão deve ser maior que zero")
+
+                .HasMaxLen(TelefoneContato, 30, "TelefoneContato", "O telefone para contato deve conter até 30 caracteres")
+                .IsNotNullOrWhiteSpace(TelefoneContato, "TelefoneContato", "O telefone para contato não pode estar vazio")
             );
         }
     }
