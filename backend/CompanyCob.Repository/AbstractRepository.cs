@@ -21,7 +21,7 @@ namespace CompanyCob.Repository
         public virtual async Task<IList<TType>> GetAllAsync()
         {
             /*
-            AsNoTracking retira algumas informações internas do EF, deixando a consulta mais "leve"
+            AsNoTracking retira algumas informações internas do EF, evitando rastreios desnecessários
             Útil em casos onde a informação não será gravada de volta
             */
 
@@ -30,7 +30,9 @@ namespace CompanyCob.Repository
 
         public virtual async Task<TType> GetAsync(TKey id)
         {
-            return await _context.Set<TType>().FindAsync(id);
+            var entity = await _context.Set<TType>().FindAsync(id);
+            _context.Entry(entity).State = EntityState.Detached;
+            return entity;
         }
 
         public virtual async Task SaveAsync(TType entity)

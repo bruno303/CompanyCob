@@ -2,7 +2,7 @@
 using CompanyCob.Domain.Model.Enum;
 using System;
 
-namespace CompanyCob.Service
+namespace CompanyCob.Service.CalculoDividaImpl
 {
     public class CalculoDividaJurosSimples : CalculoDivida
     {

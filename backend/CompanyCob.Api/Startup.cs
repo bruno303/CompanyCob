@@ -25,7 +25,7 @@ namespace CompanyCob.Api
             services.AddControllers();
             services.AddRepositories();
             services.AddAutoMapper();
-            services.AddCalculoServices();
+            services.AddCalculoService();
             services.AddSwaggerGen(cfg =>
             {
                 cfg.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo() { Title = "CompanyCob API", Version = "v1" });
