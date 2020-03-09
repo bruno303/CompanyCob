@@ -3,7 +3,7 @@ using CompanyCob.Domain.Model.Interface;
 using System;
 using System.Collections.Generic;
 
-namespace CompanyCob.Service
+namespace CompanyCob.Service.CalculoDividaImpl
 {
     public abstract class CalculoDivida : ICalculoDivida
     {

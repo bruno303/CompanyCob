@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Container from '../Container/Container';
 import DividaList from '../DividaList/DividaList';
-import axios from 'axios';
+import api from '../../service/api';
 import './CpfConsultaSubmitButton.css';
 
 const numberPattern = /\d+/g;
@@ -22,7 +22,7 @@ class CpfConsultaSubmitButton extends Component {
 
     async loadCpf(cpf) {
         try {
-            const data = await axios.get(`http://localhost:5000/v1/admin/devedores/cpf/${cpf}`);
+            const data = await api.get(`/v1/admin/devedores/cpf/${cpf}`);
             if (data.status === 200) {
                 ReactDOM.render(
                     <Container>
