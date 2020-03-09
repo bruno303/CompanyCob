@@ -2,7 +2,7 @@
 
 Versão do .Net Core: 3.1
 
-## Para iniciar a API
+## API C#
 * Configurar a string de conexão com o banco de dados em: /CompanyCob/backend/CompanyCob.Repository/Data/CobDbContext.cs
 * A API está configurada para aplicar todas as migrations quando for executada. No Startup.cs:
 ```
@@ -16,7 +16,7 @@ dotnet ef database update aumentar_tamanho_cpf -p CompanyCob.Repository\CompanyC
 dotnet ef database update foreign_keys -p CompanyCob.Repository\CompanyCob.Repository.csproj
 ```
 
-* Agora basta subir a API (assumindo que a pasta atual é: /CompanyCob/backend ):
+* Para executar a API certifique-se de estar na pasta **CompanyCob/backend** e digite:
 
 - Windows:
 ```
@@ -33,3 +33,9 @@ dotnet run -p CompanyCob.Api/CompanyCob.Api.csproj
 ```
 http://localhost:5000/swagger
 ```
+
+* Para executar os testes unitários das classes de cálculo das dívidas, certifique-se de estar na pasta **CompanyCob/backend** e digite:
+```
+dotnet test .\CompanyCob.Service.Test\CompanyCob.Service.Test.csproj -l trx
+```
+Será criado um arquivo com os resultados dos testes em: **CompanyCob/backend/CompanyCob.Service.Test/CompanyCob.Service.Test.csproj/TestResults**
