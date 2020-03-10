@@ -45,7 +45,7 @@
 }
 
 .modal-content {
-    background-color: #fefefe;
+    background-color: #d1d1d1;
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
@@ -72,4 +72,23 @@
 
 .results-div .row div{
     text-align: center;
+}
+
+.details-results-div, .results-div {
+    margin-bottom: 15px;
+}
+
+.details-results-div .row {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+}
+
+.details-results-div .row div{
+    text-align: center;
+}
+
+.header-font-result {
+    font-size: 15px;
+    padding-bottom: 10px;
+    font-weight: bold;
 }
