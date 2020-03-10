@@ -5,7 +5,11 @@ Porta: 5000
 Protocolo: HTTP
 
 ## API C#
-* Configurar a string de conexão com o banco de dados em: /CompanyCob/backend/CompanyCob.Api/appsettings.json
+* Configurar a string de conexão com o banco de dados em: /CompanyCob/backend/CompanyCob.Repository/Data/CobDbContext.cs.
+Escolhi deixar a string de conexão diretamente no DbContext pois com isso o projeto CompanyCob.Repository é independente para gerar as migrations através do comando
+```
+dotnet ef migrations add nome_migration -p CompanyCob.Repository\ComapnyCob.Repository.csproj
+```
 
 * A API está configurada para aplicar todas as migrations quando for executada. No Startup.cs:
 ```
@@ -15,12 +19,18 @@ context.Database.Migrate();
 Para que isso fosse possível, o CobDbContext foi configurado na injeção de dependência como Transient (sempre instanciar um novo).
 Uma aplicação que vai para produção não deve ter suas migrations executadas automaticamente, e removendo isso o CobDbContext pode usar a configuração default (Scoped).
 
-* Caso opte por atualizar o banco de dados manualmente:
+* Caso opte por atualizar o banco de dados manualmente, certifique-se de estar no diretório **CompanyCob/backend** e digite:
+Para instalar o dotnet-ef tool
 ```
 dotnet tool install -g dotnet-ef --version 3.1.0
+```
+Para aplicar as migrations:
+```
 dotnet ef database update inicio -p CompanyCob.Repository\CompanyCob.Repository.csproj
 dotnet ef database update aumentar_tamanho_cpf -p CompanyCob.Repository\CompanyCob.Repository.csproj
 dotnet ef database update foreign_keys -p CompanyCob.Repository\CompanyCob.Repository.csproj
+dotnet ef database update rename_column_comissao -p CompanyCob.Repository\CompanyCob.Repository.csproj
+dotnet ef database update telefone_carteira -p CompanyCob.Repository\CompanyCob.Repository.csproj
 ```
 
 * Para executar a API certifique-se de estar na pasta **CompanyCob/backend** e digite:
