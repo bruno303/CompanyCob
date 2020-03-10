@@ -12,6 +12,7 @@ namespace CompanyCob.Domain.Model
         public TipoJurosEnum TipoJuros { get; set; }
         public decimal PercentualJuros { get; set; }
         public decimal PercentualComissao { get; set; }
+        public string TelefoneContato { get; set; }
         public IEnumerable<Divida> Dividas { get; set; }
     }
 }

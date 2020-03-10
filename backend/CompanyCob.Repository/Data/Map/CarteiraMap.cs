@@ -23,6 +23,7 @@ namespace CompanyCob.Repository.Data.Map
             builder.Property(c => c.TipoJuros).IsRequired().HasConversion(tipoJurosConverter);
             builder.Property(c => c.PercentualJuros).IsRequired().HasColumnType("money");
             builder.Property(c => c.PercentualComissao).IsRequired().HasColumnType("money");
+            builder.Property(c => c.TelefoneContato).IsRequired().HasMaxLength(30).HasColumnType("varchar(30)");
         }
     }
 }
