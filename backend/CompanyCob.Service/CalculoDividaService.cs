@@ -28,9 +28,9 @@ namespace CompanyCob.Service
             _dividaRepository = dividaRepository;
         }
 
-        public async Task<ResultadoPadrao<List<ParcelaNegociacao>>> Calcular(int idDivida, int idDevedor)
+        public async Task<ResultadoPadrao<Negociacao>> Calcular(int idDivida, int idDevedor)
         {
-            var resultado = new ResultadoPadrao<List<ParcelaNegociacao>>();
+            var resultado = new ResultadoPadrao<Negociacao>();
             Carteira carteira;
             Divida divida;
 
@@ -67,7 +67,11 @@ namespace CompanyCob.Service
             carteira = await _carteiraRepository.GetAsync(divida.IdCarteira);
 
             _logger.LogInformation($"Calculando parcelamento da dívida {idDivida}");
-            resultado.Resultado = CalcularParcelas(divida, carteira);
+            resultado.Resultado = new Negociacao();
+            resultado.Resultado.Parcelas = CalcularParcelas(divida, carteira);
+            resultado.Resultado.Divida = divida;
+            resultado.Resultado.QtdParcelas = resultado.Resultado.Parcelas.Count;
+            resultado.Resultado.TelefoneContato = carteira.TelefoneContato;
             resultado.Sucesso = true;
 
             return resultado;

@@ -36,7 +36,7 @@ namespace CompanyCob.Api.Controllers
             }
 
             _logger.LogInformation($"Cálculo do parcelamento da dívida {idDivida} realizado com sucesso");
-            return Ok(new { result = true, message = "", parcelas = result.Resultado });
+            return Ok(new { result = true, message = "", data = result.Resultado });
         }
     }
 }
