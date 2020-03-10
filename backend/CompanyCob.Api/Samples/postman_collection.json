@@ -173,7 +173,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"id\": 1,\n\t\"nome\": \"Bradesco\",\n\t\"razaoSocial\": \"Banco Bradesco S/A\",\n\t\"qtdParcelasMaxima\": 3,\n\t\"tipoJuros\": 1,\n\t\"percentualJuros\": 0.2,\n\t\"percentualComissao\": 10\n}"
+					"raw": "{\n\t\"id\": 1,\n\t\"nome\": \"Bradesco\",\n\t\"razaoSocial\": \"Banco Bradesco S/A\",\n\t\"qtdParcelasMaxima\": 9,\n\t\"tipoJuros\": 1,\n\t\"percentualJuros\": 0.2,\n\t\"percentualComissao\": 10,\n\t\"telefoneContato\": \"(14) 9999-8888\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/v1/admin/carteiras",
@@ -461,7 +461,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nome\": \"Bradesco\",\n\t\"razaoSocial\": \"Banco Bradesco S/A\",\n\t\"qtdParcelasMaxima\": 8,\n\t\"tipoJuros\": 0,\n\t\"percentualJuros\": 0.3,\n\t\"percentualComissao\": 10\n}"
+					"raw": "{\n\t\"nome\": \"Bradesco\",\n\t\"razaoSocial\": \"Banco Bradesco S/A\",\n\t\"qtdParcelasMaxima\": 8,\n\t\"tipoJuros\": 0,\n\t\"percentualJuros\": 0.3,\n\t\"percentualComissao\": 10,\n\t\"telefoneContato\": \"(14) 9999-8888\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/v1/admin/carteiras",
