@@ -18,7 +18,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nome\": \"Joao Antonio\",\n\t\"cpf\": 22223344556\n}"
+					"raw": "{\n\t\"nome\": \"Joao Antonio\",\n\t\"cpf\": 52998224725\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/v1/admin/devedores",
@@ -49,7 +49,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"id\": 1,\n\t\"nome\": \"Jose Antonio\",\n\t\"cpf\": 22223344556\n}"
+					"raw": "{\n\t\"id\": 1,\n\t\"nome\": \"Jose Antonio\",\n\t\"cpf\": 52998224725\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/v1/admin/devedores",
@@ -173,7 +173,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"id\": 1,\n\t\"nome\": \"Bradesco\",\n\t\"razaoSocial\": \"Banco Bradesco S/A\",\n\t\"qtdParcelasMaxima\": 9,\n\t\"tipoJuros\": 1,\n\t\"percentualJuros\": 0.2,\n\t\"percentualComissao\": 10,\n\t\"telefoneContato\": \"(14) 9999-8888\"\n}"
+					"raw": "{\n\t\"id\": 1,\n\t\"nome\": \"Bradesco\",\n\t\"razaoSocial\": \"Banco Bradesco S/A\",\n\t\"qtdParcelasMaxima\": 12,\n\t\"tipoJuros\": 1,\n\t\"percentualJuros\": 0.2,\n\t\"percentualComissao\": 10,\n\t\"telefoneContato\": \"(14) 9999-8888\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/v1/admin/carteiras",
@@ -244,6 +244,39 @@
 			"response": []
 		},
 		{
+			"name": "GetToken",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "11223344556",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/v1/token/11223344556",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"v1",
+						"token",
+						"11223344556"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "GetDevedor",
 			"request": {
 				"method": "GET",
@@ -269,7 +302,13 @@
 			"name": "GetDividaCalculada",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjExMjIzMzQ0NTU2IiwiZXhwIjoxNTgzODkxMTYyLCJpc3MiOiJDb21wYW55Q29iIiwiYXVkIjoiQ29tcGFueUNvYiJ9.y5YyiAcnDHSMX3pVv9ydkzwN5qgaVsTPXLCzHKue8g0",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:5000/v1/calculo/1/1",
 					"protocol": "http",
@@ -291,7 +330,13 @@
 			"name": "GetDevedorByCpf",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjExMjIzMzQ0NTU2IiwiZXhwIjoxNTgzODkwNzg0LCJpc3MiOiJDb21wYW55Q29iIiwiYXVkIjoiQ29tcGFueUNvYiJ9.BmaJ2Ya0nk-QocRhxvPNRFfWDLaUaPkf89TQr3aiD94",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:5000/v1/admin/devedores/cpf/11223344556",
 					"protocol": "http",
@@ -461,7 +506,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nome\": \"Bradesco\",\n\t\"razaoSocial\": \"Banco Bradesco S/A\",\n\t\"qtdParcelasMaxima\": 8,\n\t\"tipoJuros\": 0,\n\t\"percentualJuros\": 0.3,\n\t\"percentualComissao\": 10,\n\t\"telefoneContato\": \"(14) 9999-8888\"\n}"
+					"raw": "{\n\t\"nome\": \"Santander\",\n\t\"razaoSocial\": \"Banco Santander S/A\",\n\t\"qtdParcelasMaxima\": 10,\n\t\"tipoJuros\": 1,\n\t\"percentualJuros\": 0.2,\n\t\"percentualComissao\": 9.8,\n\t\"telefoneContato\": \"(14) 8888-9999\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:5000/v1/admin/carteiras",
