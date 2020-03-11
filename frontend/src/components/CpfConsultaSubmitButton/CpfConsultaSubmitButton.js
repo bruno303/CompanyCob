@@ -22,11 +22,20 @@ class CpfConsultaSubmitButton extends Component {
 
     async loadCpf(cpf) {
         try {
-            const data = await api.get(`/v1/admin/devedores/cpf/${cpf}`);
+
+            const responseToken = await api.get(`v1/token/${cpf}`);
+            const token = responseToken.data.token;
+
+            const data = await api.get(`/v1/admin/devedores/cpf/${cpf}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            
             if (data.status === 200) {
                 ReactDOM.render(
                     <Container>
-                        <DividaList data={data.data} />
+                        <DividaList data={data.data} token={token} />
                     </Container>,
                     document.getElementById("root")
                 );
