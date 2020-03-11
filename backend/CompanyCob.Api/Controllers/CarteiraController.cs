@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using CompanyCob.Api.ViewModel;
 using AutoMapper;
 using CompanyCob.Domain.Model.Interface.Repository;
+using Flunt.Notifications;
+using CompanyCob.Api.Utils;
 
 namespace CompanyCob.Api.Controllers
 {
@@ -84,7 +86,7 @@ namespace CompanyCob.Api.Controllers
             model.Validate();
             if (model.Invalid)
             {
-                _logger.LogInformation("Carteira não é válida:");
+                ControllerUtils.LogErros("Carteira não é válida:", model, _logger);
                 foreach (var notificacao in model.Notifications)
                 {
                     _logger.LogInformation("* {0}", notificacao.Message);
@@ -120,11 +122,7 @@ namespace CompanyCob.Api.Controllers
             model.Validate();
             if (model.Invalid)
             {
-                _logger.LogInformation("Alterações na carteira não são válidas:");
-                foreach (var notificacao in model.Notifications)
-                {
-                    _logger.LogInformation("* {0}", notificacao.Message);
-                }
+                ControllerUtils.LogErros("Alterações na carteira não são válidas:", model, _logger);
 
                 return Ok(new ResultViewModel()
                 {
