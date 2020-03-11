@@ -1,9 +1,12 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using CompanyCob.Api.Utils;
 using CompanyCob.Api.ViewModel;
 using CompanyCob.Domain.Model;
 using CompanyCob.Domain.Model.Interface.Repository;
 using CompanyCob.Domain.Model.Interface.Service;
+using Flunt.Notifications;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -112,11 +115,7 @@ namespace CompanyCob.Api.Controllers
             model.Validate();
             if (model.Invalid)
             {
-                _logger.LogInformation("Devedor não é válido:");
-                foreach (var notificacao in model.Notifications)
-                {
-                    _logger.LogInformation("* {0}", notificacao.Message);
-                }
+                ControllerUtils.LogErros("Devedor não é válido:", model, _logger);
 
                 return Ok(new ResultViewModel()
                 {
@@ -133,11 +132,7 @@ namespace CompanyCob.Api.Controllers
             ValidacaoResult validacaoResult = await _devedorService.ValidarAsync(devedor);
             if (validacaoResult.Invalido)
             {
-                _logger.LogInformation("Devedor não é válido:");
-                foreach (var erro in validacaoResult.Erros)
-                {
-                    _logger.LogInformation("* {0}", erro);
-                }
+                ControllerUtils.LogErros("Devedor não é válido:", validacaoResult.Erros, _logger);
 
                 return Ok(new ResultViewModel()
                 {
@@ -165,11 +160,7 @@ namespace CompanyCob.Api.Controllers
             model.Validate();
             if (model.Invalid)
             {
-                _logger.LogInformation("Alterações no devedor não são válidas:");
-                foreach (var notificacao in model.Notifications)
-                {
-                    _logger.LogInformation("* {0}", notificacao.Message);
-                }
+                ControllerUtils.LogErros("Alterações no devedor não são válidas:", model, _logger);
 
                 return Ok(new ResultViewModel()
                 {
@@ -186,11 +177,7 @@ namespace CompanyCob.Api.Controllers
             ValidacaoResult validacaoResult = await _devedorService.ValidarAsync(devedor);
             if (validacaoResult.Invalido)
             {
-                _logger.LogInformation("Devedor não é válido:");
-                foreach (var erro in validacaoResult.Erros)
-                {
-                    _logger.LogInformation("* {0}", erro);
-                }
+                ControllerUtils.LogErros("Devedor não é válido:", validacaoResult.Erros, _logger);
 
                 return Ok(new ResultViewModel()
                 {

@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using AutoMapper;
+using CompanyCob.Api.Utils;
 using CompanyCob.Api.ViewModel;
 using CompanyCob.Domain.Model;
 using CompanyCob.Domain.Model.Interface.Repository;
@@ -78,11 +79,7 @@ namespace CompanyCob.Api.Controllers
             model.Validate();
             if (model.Invalid)
             {
-                _logger.LogInformation("Nova dívida não é válida:");
-                foreach (var notificacao in model.Notifications)
-                {
-                    _logger.LogInformation("* {0}", notificacao.Message);
-                }
+                ControllerUtils.LogErros("Nova dívida não é válida:", model, _logger);
 
                 return Ok(new ResultViewModel()
                 {
@@ -114,11 +111,7 @@ namespace CompanyCob.Api.Controllers
             model.Validate();
             if (model.Invalid)
             {
-                _logger.LogInformation("Alterações na dívida não são válidas:");
-                foreach (var notificacao in model.Notifications)
-                {
-                    _logger.LogInformation("* {0}", notificacao.Message);
-                }
+                ControllerUtils.LogErros("Alterações na dívida não são válidas:", model, _logger);
 
                 return Ok(new ResultViewModel()
                 {
