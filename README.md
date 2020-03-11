@@ -5,8 +5,7 @@ Porta: 5000
 Protocolo: HTTP
 
 ## API C#
-* Configurar a string de conexão com o banco de dados em: /CompanyCob/backend/CompanyCob.Repository/Data/CobDbContext.cs.
-Escolhi deixar a string de conexão diretamente no DbContext pois com isso o projeto CompanyCob.Repository é independente para gerar as migrations através do comando
+* Configurar a string de conexão com o banco de dados em: /CompanyCob/backend/CompanyCob.Api/appsettings.json.
 ```
 dotnet ef migrations add nome_migration -p CompanyCob.Repository\ComapnyCob.Repository.csproj
 ```
@@ -26,11 +25,7 @@ dotnet tool install -g dotnet-ef --version 3.1.0
 ```
 Para aplicar as migrations:
 ```
-dotnet ef database update inicio -p CompanyCob.Repository\CompanyCob.Repository.csproj
-dotnet ef database update aumentar_tamanho_cpf -p CompanyCob.Repository\CompanyCob.Repository.csproj
-dotnet ef database update foreign_keys -p CompanyCob.Repository\CompanyCob.Repository.csproj
-dotnet ef database update rename_column_comissao -p CompanyCob.Repository\CompanyCob.Repository.csproj
-dotnet ef database update telefone_carteira -p CompanyCob.Repository\CompanyCob.Repository.csproj
+dotnet ef database update companycob -p CompanyCob.Api\CompanyCob.Api.csproj
 ```
 
 * Para executar a API certifique-se de estar na pasta **CompanyCob/backend** e digite:
