@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace CompanyCob.Repository.Migrations
+namespace CompanyCob.Api.Migrations
 {
     [DbContext(typeof(CobDbContext))]
-    [Migration("20200307144011_foreign_keys")]
-    partial class foreign_keys
+    [Migration("20200311011036_companycob")]
+    partial class companycob
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,13 +28,13 @@ namespace CompanyCob.Repository.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<decimal>("Comissao")
-                        .HasColumnType("money");
-
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("varchar(300)")
                         .HasMaxLength(300);
+
+                    b.Property<decimal>("PercentualComissao")
+                        .HasColumnType("money");
 
                     b.Property<decimal>("PercentualJuros")
                         .HasColumnType("money");
@@ -46,6 +46,11 @@ namespace CompanyCob.Repository.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(300)")
                         .HasMaxLength(300);
+
+                    b.Property<string>("TelefoneContato")
+                        .IsRequired()
+                        .HasColumnType("varchar(30)")
+                        .HasMaxLength(30);
 
                     b.Property<int>("TipoJuros")
                         .HasColumnType("int");

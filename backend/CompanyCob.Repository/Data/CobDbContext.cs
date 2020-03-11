@@ -10,9 +10,9 @@ namespace CompanyCob.Repository.Data
         public DbSet<Devedor> Devedores { get; set; }
         public DbSet<Divida> Dividas { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public CobDbContext(DbContextOptions<CobDbContext> options): base(options)
         {
-            optionsBuilder.UseSqlServer(@"Server=192.168.0.136,1433;Database=companycob;User ID=sa;Password=admin!@#123");
+            //
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
