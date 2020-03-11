@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace CompanyCob.Domain.Model.Interface
+namespace CompanyCob.Domain.Model.Interface.Repository
 {
     public interface IDevedorRepository : IRepository<Devedor, int>
     {

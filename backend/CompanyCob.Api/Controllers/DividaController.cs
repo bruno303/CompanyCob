@@ -2,7 +2,7 @@
 using AutoMapper;
 using CompanyCob.Api.ViewModel;
 using CompanyCob.Domain.Model;
-using CompanyCob.Domain.Model.Interface;
+using CompanyCob.Domain.Model.Interface.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 

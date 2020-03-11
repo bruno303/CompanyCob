@@ -1,19 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29905.134
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyCob.Api", "CompanyCob.Api\CompanyCob.Api.csproj", "{A48E82ED-4390-4F59-9F3F-4ECFADF8925E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyCob.Api", "CompanyCob.Api\CompanyCob.Api.csproj", "{A48E82ED-4390-4F59-9F3F-4ECFADF8925E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyCob.Service", "CompanyCob.Service\CompanyCob.Service.csproj", "{343E6B30-B61E-4705-A126-24E19166F5FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyCob.Service", "CompanyCob.Service\CompanyCob.Service.csproj", "{343E6B30-B61E-4705-A126-24E19166F5FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyCob.Repository", "CompanyCob.Repository\CompanyCob.Repository.csproj", "{8A19A899-1EA8-408E-8268-55A087234350}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyCob.Repository", "CompanyCob.Repository\CompanyCob.Repository.csproj", "{8A19A899-1EA8-408E-8268-55A087234350}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyCob.DependencyInjection", "CompanyCob.DependencyInjection\CompanyCob.DependencyInjection.csproj", "{394406A2-978F-4674-8A9D-C9D57934002C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyCob.DependencyInjection", "CompanyCob.DependencyInjection\CompanyCob.DependencyInjection.csproj", "{394406A2-978F-4674-8A9D-C9D57934002C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyCob.Domain", "CompanyCob.Domain\CompanyCob.Domain.csproj", "{51905F40-218C-401A-8818-AAC33AC82F86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyCob.Domain", "CompanyCob.Domain\CompanyCob.Domain.csproj", "{51905F40-218C-401A-8818-AAC33AC82F86}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyCob.Service.Test", "CompanyCob.Service.Test\CompanyCob.Service.Test.csproj", "{DFA8C995-D771-4AE1-9C46-3A5C4144991C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyCob.Service.Test", "CompanyCob.Service.Test\CompanyCob.Service.Test.csproj", "{DFA8C995-D771-4AE1-9C46-3A5C4144991C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyCob.Utils", "CompanyCob.Utils\CompanyCob.Utils.csproj", "{28373925-D7B2-43E5-BEF3-F4B7E1C3B29C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,9 +25,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{A48E82ED-4390-4F59-9F3F-4ECFADF8925E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -100,5 +99,23 @@ Global
 		{DFA8C995-D771-4AE1-9C46-3A5C4144991C}.Release|x64.Build.0 = Release|Any CPU
 		{DFA8C995-D771-4AE1-9C46-3A5C4144991C}.Release|x86.ActiveCfg = Release|Any CPU
 		{DFA8C995-D771-4AE1-9C46-3A5C4144991C}.Release|x86.Build.0 = Release|Any CPU
+		{28373925-D7B2-43E5-BEF3-F4B7E1C3B29C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28373925-D7B2-43E5-BEF3-F4B7E1C3B29C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28373925-D7B2-43E5-BEF3-F4B7E1C3B29C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{28373925-D7B2-43E5-BEF3-F4B7E1C3B29C}.Debug|x64.Build.0 = Debug|Any CPU
+		{28373925-D7B2-43E5-BEF3-F4B7E1C3B29C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{28373925-D7B2-43E5-BEF3-F4B7E1C3B29C}.Debug|x86.Build.0 = Debug|Any CPU
+		{28373925-D7B2-43E5-BEF3-F4B7E1C3B29C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28373925-D7B2-43E5-BEF3-F4B7E1C3B29C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28373925-D7B2-43E5-BEF3-F4B7E1C3B29C}.Release|x64.ActiveCfg = Release|Any CPU
+		{28373925-D7B2-43E5-BEF3-F4B7E1C3B29C}.Release|x64.Build.0 = Release|Any CPU
+		{28373925-D7B2-43E5-BEF3-F4B7E1C3B29C}.Release|x86.ActiveCfg = Release|Any CPU
+		{28373925-D7B2-43E5-BEF3-F4B7E1C3B29C}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B2871AD3-C10E-41B2-BE24-2EB8C1334C7B}
 	EndGlobalSection
 EndGlobal

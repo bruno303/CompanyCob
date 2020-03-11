@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using CompanyCob.Domain.Model;
-using CompanyCob.Domain.Model.Interface;
 using System.Threading.Tasks;
 using CompanyCob.Api.ViewModel;
 using AutoMapper;
+using CompanyCob.Domain.Model.Interface.Repository;
 
 namespace CompanyCob.Api.Controllers
 {

@@ -1,5 +1,7 @@
 ﻿using CompanyCob.Domain.Model;
 using CompanyCob.Domain.Model.Interface;
+using CompanyCob.Domain.Model.Interface.Repository;
+using CompanyCob.Domain.Model.Interface.Service;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Threading.Tasks;

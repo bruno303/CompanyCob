@@ -1,6 +1,6 @@
 using CompanyCob.Domain.Model;
 using CompanyCob.Repository.Data;
-using CompanyCob.Domain.Model.Interface;
+using CompanyCob.Domain.Model.Interface.Repository;
 
 namespace CompanyCob.Repository
 {

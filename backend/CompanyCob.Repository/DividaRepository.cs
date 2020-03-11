@@ -1,5 +1,5 @@
 using CompanyCob.Domain.Model;
-using CompanyCob.Domain.Model.Interface;
+using CompanyCob.Domain.Model.Interface.Repository;
 using CompanyCob.Repository.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace CompanyCob.Domain.Model.Interface
+namespace CompanyCob.Domain.Model.Interface.Repository
 {
     public interface IDividaRepository : IRepository<Divida, int>
     {
