@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace CompanyCob.Repository.Migrations
+namespace CompanyCob.Api.Migrations
 {
     [DbContext(typeof(CobDbContext))]
     partial class CobDbContextModelSnapshot : ModelSnapshot

@@ -7,6 +7,11 @@ using CompanyCob.DependencyInjection;
 using CompanyCob.Api.Configuration;
 using Microsoft.EntityFrameworkCore;
 using CompanyCob.Repository.Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using System;
+using System.Threading.Tasks;
 
 namespace CompanyCob.Api
 {
@@ -23,13 +28,43 @@ namespace CompanyCob.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddRepositories();
+            services.AddRepositories(Configuration);
             services.AddAutoMapper();
             services.AddCalculoService();
             services.AddSwaggerGen(cfg =>
             {
                 cfg.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo() { Title = "CompanyCob API", Version = "v1" });
             });
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(opts =>
+                {
+                    opts.TokenValidationParameters = new TokenValidationParameters()
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = "CompanyCob",
+                        ValidAudience = "CompanyCob",
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["SecutiryKey"]))
+                    };
+
+                    opts.Events = new JwtBearerEvents()
+                    {
+                        OnAuthenticationFailed = context =>
+                        {
+                            Console.WriteLine($"Token inválido...{context.Exception.Message}");
+                            return Task.CompletedTask;
+                        },
+                        OnTokenValidated = context =>
+                        {
+                            Console.WriteLine($"Token válido...{context.SecurityToken}");
+                            return Task.CompletedTask;
+                        },
+                    };
+                });
+
             services.AddResponseCompression();
         }
 
@@ -38,7 +73,12 @@ namespace CompanyCob.Api
         {
             context.Database.Migrate();
 
-            app.UseCors(policy => policy.AllowAnyOrigin());
+            app.UseCors(policy =>
+            {
+                policy.AllowAnyOrigin();
+                policy.AllowAnyHeader();
+                policy.AllowAnyMethod();
+            });
 
             if (env.IsDevelopment())
             {
@@ -56,6 +96,8 @@ namespace CompanyCob.Api
             });
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

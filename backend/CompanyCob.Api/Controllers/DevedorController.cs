@@ -3,6 +3,7 @@ using AutoMapper;
 using CompanyCob.Api.ViewModel;
 using CompanyCob.Domain.Model;
 using CompanyCob.Domain.Model.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -76,6 +77,7 @@ namespace CompanyCob.Api.Controllers
         }
 
         [HttpGet("v1/admin/devedores/cpf/{cpf}")]
+        [Authorize]
         public async Task<IActionResult> GetByCpf(long cpf)
         {
             _logger.LogInformation("Carregando devedor. CPF: {0}", cpf);

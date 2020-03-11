@@ -1,14 +1,13 @@
-﻿using CompanyCob.Domain.Model;
-using CompanyCob.Domain.Model.Interface;
-using CompanyCob.Service;
+﻿using CompanyCob.Domain.Model.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace CompanyCob.Api.Controllers
 {
     [ApiController]
+    [Authorize]
     public class CalculoController : ControllerBase
     {
         private readonly ILogger<CalculoController> _logger;

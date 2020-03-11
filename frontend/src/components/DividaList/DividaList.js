@@ -5,6 +5,7 @@ import api from '../../service/api';
 
 class DividaList extends Component {
     dataDevedor = {};
+    token = "";
 
     state = {
         dividaCalculada: {
@@ -21,6 +22,7 @@ class DividaList extends Component {
         super(props);
 
         this.dataDevedor = props.data;
+        this.token = props.token;
         this.calcDividasHandler = this.calcDividasHandler.bind(this);
     }
 
@@ -47,12 +49,22 @@ class DividaList extends Component {
 
     async getDividaCalculada(idDevedor, idDivida) {
         try {
-            const result = await api.get(`/v1/calculo/${idDevedor}/${idDivida}`)
+
+            console.log(this.token);
+            const result = await api.get(`/v1/calculo/${idDevedor}/${idDivida}`, {
+                headers: {
+                    'Authorization': `Bearer ${this.token}`
+                }
+            });
+
             if (result.status === 200) {
                 this.setState({ dividaCalculada: result.data.data, parcelas: result.data.data.parcelas });
-            } else {
-                this.showError(`Erro ao consultar as parcelas calculadas. Status ${result.status}`);
+                return true;
             }
+
+            this.showError(`Erro ao consultar as parcelas calculadas. Status ${result.status}`);
+            return false;
+
         } catch (err) {
             this.showError(`Erro ao consultar as parcelas calculadas: ${err}`);
         }
@@ -62,10 +74,10 @@ class DividaList extends Component {
         const idDevedor = this.dataDevedor.id;
         const idDivida = e.target.getAttribute("data-divida-id");
 
-        await this.getDividaCalculada(idDevedor, idDivida);
-        this.renderDividaCalculada();
-
-        this.showModal();
+        if (await this.getDividaCalculada(idDevedor, idDivida)) {
+            this.renderDividaCalculada();
+            this.showModal();
+        }
     }
 
     renderDividaCalculada() {

@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace CompanyCob.Repository.Migrations
+namespace CompanyCob.Api.Migrations
 {
-    public partial class inicio : Migration
+    public partial class companycob : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -18,7 +18,8 @@ namespace CompanyCob.Repository.Migrations
                     QtdParcelasMaxima = table.Column<int>(nullable: false),
                     TipoJuros = table.Column<int>(nullable: false),
                     PercentualJuros = table.Column<decimal>(type: "money", nullable: false),
-                    Comissao = table.Column<decimal>(type: "money", nullable: false)
+                    PercentualComissao = table.Column<decimal>(type: "money", nullable: false),
+                    TelefoneContato = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -32,7 +33,7 @@ namespace CompanyCob.Repository.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false),
-                    Cpf = table.Column<int>(nullable: false)
+                    Cpf = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -45,8 +46,8 @@ namespace CompanyCob.Repository.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    DevedorId = table.Column<int>(nullable: false),
-                    CarteiraId = table.Column<int>(nullable: false),
+                    IdDevedor = table.Column<int>(nullable: false),
+                    IdCarteira = table.Column<int>(nullable: false),
                     NumeroDivida = table.Column<string>(type: "varchar(60)", maxLength: 60, nullable: false),
                     ValorOriginal = table.Column<decimal>(type: "money", nullable: false),
                     Vencimento = table.Column<DateTime>(type: "datetime", nullable: false)
@@ -55,28 +56,28 @@ namespace CompanyCob.Repository.Migrations
                 {
                     table.PrimaryKey("PK_Divida", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Divida_Carteira_CarteiraId",
-                        column: x => x.CarteiraId,
+                        name: "FK_Divida_Carteira_IdCarteira",
+                        column: x => x.IdCarteira,
                         principalTable: "Carteira",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Divida_Devedor_DevedorId",
-                        column: x => x.DevedorId,
+                        name: "FK_Divida_Devedor_IdDevedor",
+                        column: x => x.IdDevedor,
                         principalTable: "Devedor",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Divida_CarteiraId",
+                name: "IX_Divida_IdCarteira",
                 table: "Divida",
-                column: "CarteiraId");
+                column: "IdCarteira");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Divida_DevedorId",
+                name: "IX_Divida_IdDevedor",
                 table: "Divida",
-                column: "DevedorId");
+                column: "IdDevedor");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
