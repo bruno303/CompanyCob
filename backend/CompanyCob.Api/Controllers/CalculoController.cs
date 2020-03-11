@@ -1,4 +1,4 @@
-﻿using CompanyCob.Domain.Model.Interface;
+﻿using CompanyCob.Domain.Model.Interface.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;

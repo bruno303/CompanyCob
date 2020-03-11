@@ -1,4 +1,4 @@
-﻿using CompanyCob.Domain.Model.Interface;
+﻿using CompanyCob.Domain.Model.Interface.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;

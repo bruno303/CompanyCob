@@ -2,7 +2,8 @@ using System.Threading.Tasks;
 using AutoMapper;
 using CompanyCob.Api.ViewModel;
 using CompanyCob.Domain.Model;
-using CompanyCob.Domain.Model.Interface;
+using CompanyCob.Domain.Model.Interface.Repository;
+using CompanyCob.Domain.Model.Interface.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -17,19 +18,22 @@ namespace CompanyCob.Api.Controllers
         private readonly IDividaRepository _dividaRepository;
         private readonly ICarteiraRepository _carteiraRepository;
         private readonly IMapper _mapper;
+        private readonly IDevedorService _devedorService;
 
         public DevedorController(
             ILogger<DevedorController> logger,
             IDevedorRepository devedorRepository,
             IDividaRepository dividaRepository,
             ICarteiraRepository carteiraRepository,
-            IMapper mapper)
+            IMapper mapper,
+            IDevedorService devedorService)
         {
             _logger = logger;
             _devedorRepository = devedorRepository;
             _dividaRepository = dividaRepository;
             _carteiraRepository = carteiraRepository;
             _mapper = mapper;
+            _devedorService = devedorService;
         }
 
         [HttpGet("v1/admin/devedores")]
@@ -122,8 +126,26 @@ namespace CompanyCob.Api.Controllers
                 });
             }
 
-            _logger.LogInformation("Salvando novo devedor");
+            _logger.LogInformation("Mapeando novo devedor");
             var devedor = _mapper.Map<Devedor>(model);
+
+            _logger.LogInformation("Validando regras de negócio do devedor");
+            ValidacaoResult validacaoResult = await _devedorService.ValidarAsync(devedor);
+            if (validacaoResult.Invalido)
+            {
+                _logger.LogInformation("Devedor não é válido:");
+                foreach (var erro in validacaoResult.Erros)
+                {
+                    _logger.LogInformation("* {0}", erro);
+                }
+
+                return Ok(new ResultViewModel()
+                {
+                    Success = false,
+                    Message = "Não foi possível cadastrar o devedor",
+                    Data = validacaoResult.Erros
+                });
+            }
 
             await _devedorRepository.SaveAsync(devedor);
 
@@ -157,8 +179,26 @@ namespace CompanyCob.Api.Controllers
                 });
             }
 
-            _logger.LogInformation("Atualizando devedor");
+            _logger.LogInformation("Mapeando novo devedor");
             var devedor = _mapper.Map<Devedor>(model);
+
+            _logger.LogInformation("Validando regras de negócio do devedor");
+            ValidacaoResult validacaoResult = await _devedorService.ValidarAsync(devedor);
+            if (validacaoResult.Invalido)
+            {
+                _logger.LogInformation("Devedor não é válido:");
+                foreach (var erro in validacaoResult.Erros)
+                {
+                    _logger.LogInformation("* {0}", erro);
+                }
+
+                return Ok(new ResultViewModel()
+                {
+                    Success = false,
+                    Message = "Não foi possível alterar o devedor",
+                    Data = validacaoResult.Erros
+                });
+            }
 
             await _devedorRepository.UpdateAsync(devedor);
 

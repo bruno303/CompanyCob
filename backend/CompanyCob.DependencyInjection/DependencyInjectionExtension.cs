@@ -6,6 +6,8 @@ using CompanyCob.Service;
 using CompanyCob.Service.CalculoDividaImpl;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
+using CompanyCob.Domain.Model.Interface.Repository;
+using CompanyCob.Domain.Model.Interface.Service;
 
 namespace CompanyCob.DependencyInjection
 {
@@ -28,6 +30,11 @@ namespace CompanyCob.DependencyInjection
             serviceColletion.AddSingleton<ICalculoDivida, CalculoDividaJurosSimples>();
             serviceColletion.AddSingleton<ICalculoDivida, CalculoDividaJurosCompostos>();
             serviceColletion.AddSingleton<ICalculoDividaService, CalculoDividaService>();
+        }
+
+        public static void AddDevedorService(this IServiceCollection serviceCollection)
+        {
+            serviceCollection.AddSingleton<IDevedorService, DevedorService>();
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace CompanyCob.Domain.Model.Interface
+namespace CompanyCob.Domain.Model.Interface.Service
 {
     public interface ICalculoDividaService
     {

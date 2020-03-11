@@ -2,8 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using CompanyCob.Repository.Data;
 using Microsoft.EntityFrameworkCore;
-using CompanyCob.Domain.Model.Interface;
-using System.Linq;
+using CompanyCob.Domain.Model.Interface.Repository;
 
 namespace CompanyCob.Repository
 {

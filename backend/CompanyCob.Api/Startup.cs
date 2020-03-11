@@ -31,6 +31,8 @@ namespace CompanyCob.Api
             services.AddRepositories(Configuration);
             services.AddAutoMapper();
             services.AddCalculoService();
+            services.AddDevedorService();
+
             services.AddSwaggerGen(cfg =>
             {
                 cfg.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo() { Title = "CompanyCob API", Version = "v1" });
